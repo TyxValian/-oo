@@ -1,0 +1,15 @@
+josn数据格式：
+写法：单引号包括总体在用双引号包括单项
+----‘{“key”，“value”}’||  ‘[]’
+
+josn转对象-> JOSN.parse(JOSN);
+  ***转不了函数类型和undefined（报错）
+
+     第一参数为josn
+     第二个参数为：callback
+    进一步处理（key，val）=>{ }
+  
+对象转josn -> JOSN.stringift(obj);
+  ***和上面相同（不显示）
+ eval:
+            能把字符串以js的方式尽可能运行。

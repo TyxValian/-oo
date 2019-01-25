@@ -1,0 +1,103 @@
+ajax：
+   对于请求的数据和静态资源（html的页面，图片），在低版本的IE下会缓存
+   高版本浏览器是只缓存静态资源，不缓存数据。
+
+   什么情况下才会被浏览器缓存？
+   第二次的地址和第一次的地址一样，那么第二次找到的资源就为第一次的
+   解决：
+       让第二次的地址和第一次的地址不一样即可。
+    设定一个时间戳，改变存储的地址：
+ txt.onblur = function(){
+  var xhr = new XMLHttpRequest；
+ xhr.open('post','/post');
+xhr.setRequestHeader('content-Type','application/x-www-forn-urlencode');
+xhr.send('user='+this.value);
+xhr.onload = funcation(){
+console.log(xhr.responseText);
+}
+}
+
+
+
+同步，异步
+  同步：在程序运行的时候，从上而下，只要上面的代码运行完成，会阻塞下面的代码运行，只有上面的代码执行完才能走下面的代码。
+
+ 异步：例如（定时器）在程序运行的时候，是从上而下的，上面的代码没有运行完成，不会阻塞下面的代码运行；
+
+txt.onblur = function(){
+   var xhr = new XMLHttpRequest;
+   xhr.open('get','/sleep?name=' + encondeURL(this.value)+'&id='+Date.now(),flase);
+   xhr.send();
+   console.log(xhr.responseText);
+  console.log('下面10000行代码')
+}
+
+ajax兼容性问题：
+   XMLHttpRequest在低版本的ie下（除ie6）.里面的事件和属性都有所不同。
+ 比如：onload高版本才能用，但是，所有的版本都支持onreadystatechange、
+ 它能都监听到请求的步骤。
+  onreadystatechange能监听5秒，有5个步骤对应0-4个数字，但是第0步监听不到。
+ 最多只能监听到1-4，通过xhr.reayState拿到这些数字：
+
+ 在执行1-4步的时候，每完成一次，都会调用一次onreadystatechange，直到最后一步为4
+的时候，说明服务器已经有回应。
+  0-4步变化：
+0：请求未初始化
+1：服务器连接已建立
+2：请求已接收：
+3：请求处理中
+4：请求已完成，且响应已就位
+
+
+低版本正常走1-4
+高版本直接走第4步
+
+
+send（）：放在那里（异步和同步）
+如果输onload，放在onload的上面也行，下面也可以
+但是如果是onreadystatechange，那么send放在事件的而下面。
+ 1.能都多监听一步
+ 2.低版本的ie，send放在事件的上面，在同步的时候，第4步监听不到
+
+
+总的来说，如果ie低版本
+  1.创建ajax对象
+  2.填写地址
+ 3.等待onreadystatechange
+4.发送
+
+高版本：
+
+ 创建ajax对象
+填写地址
+发送
+等待onload
+拿到返回 的信息
+
+
+继续ajax兼容性问题：
+
+xhr.status查看当前的状态码
+
+xhr.status=》HTTP状态码
+  *200： 客户端成功接收到服务端的返回的数据
+  *301：永久重定向，当前地址改变，依旧能找到这个地址存储域
+  *302：临时重定向：一般情况下当服务器出现饱和状态时就会重新跳转到一个新的地址
+  *304:   加载缓存：一般我们请求一个页面，浏览器会默认将这个页面的额全部信息缓存的本地，如果我们想要每次请求都不走的缓存的话，可以这样操作
+
+                   xhr.open('get','3.TCP协议.html?_='+Math.random(),true);
+                * xhr.open('get','3.TCP协议.html?_='+new Date().getTime(),true);
+
+
+*307：临时重定向：针对的是HTTP传输协议
+*400：访问参数错误
+*401：没有访问权限
+*404：请求地址【资源】不存在
+*413：客户转请求的文件超过服务端的最大承载的容量
+*500：未知的服务端错误
+*503：服务器超过最大的负荷
+
+
+
+ 注意：只要是5xx 都是服务端的问题，只要页面是4xx 都是前端的问题 2xx和3xx 都可以表示请求的成功的意思
+                

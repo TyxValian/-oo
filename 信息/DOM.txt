@@ -1,0 +1,17 @@
+dom映射;
+通过document来获取页面标签的接口，获取的元素对象和标签是一一对应的关系。
+
+dom回流：
+ dom中如果操作莫个元素的位置或者大小，会导致浏览器重新计算每个元素的所占位置，这样特别消耗性能，尽量少操作dom
+
+DOM重绘
+ 当页面中元素的背景或者字体颜色发生改变，
+ 那么浏览器要对元素进行重新的描绘；这种现象就是“重绘”；
+
+批量操作DOM的时候最好使用字符串
+            其次使用createElement()、appendChild....
+            最后使用文档碎片
+                let frg = document.createDocumentFragment();
+                frg.append(ele1);
+                frg.append(ele2);
+                parentNode.appendChild(frg[ele1,ele2])

@@ -1,0 +1,45 @@
+类数组转数组的方法：
+  array.from()
+  array.prototype.slice.call()
+  [].slice.call()
+  [...类数组]
+
+什么是正则：
+  用来检索（模糊范围的）字符串的一种规则；
+  简写：/规则|不加引号的字符串/
+  标准：new RegExp(//|"","修饰符")
+
+元字符：
+ \s \S \d \D \w \W \b \B .
+
+15--150（范围）
+ 
+/^(1[5-9]|[2-9][0-9]|1[0-4][0-9]|150)$/
+
+
+正则的方法：
+  .test() 布尔值
+  .exe() []|null
+  .string.match(); []|null
+  .string.replace(‘’|// ,‘’|callback) 替换
+
+replce用在哪些地方？
+   格式化，过滤敏感词，查找最多，模拟模板
+
+加了开头结尾（^&）
+  加了开头和结尾的就看整段匹配
+  不加就不能匹配或匹配多项
+
+josn：一种数据类型
+  转成对象：josn.prase(josn)-->object
+  对象转json： josn.stringify(obj) --> josn
+  eval()
+  new function
+
+盒子距离(top,left)尺寸(width/height)：
+clientwidth/clientheight
+offset
+csroll
+
+offsetTop/offsetLeft  子元素外到父元素内边框的距离
+getBoundingClintRight()

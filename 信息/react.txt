@@ -1,0 +1,76 @@
+最简单的reac：
+  专门构建于用户界面的js库（最多就是属于MVC中的V成框架）
+
+  核心思想，通过数据去操作视图
+
+  相对于vue来说只是写法不同，思想类似，代码相对vue来说比较多一点点，基本上写的原生，自己的功能多一些
+  优势：
+       它是由Facebook公司出品，生态比较丰富
+
+     1.安装：creat-react-app  自己的项目名称（不能是中文）
+                      cd my-app
+                      npm start/yarn start
+                         
+             react:(react+react-router-dom+redux(mobx))
+                        react-native 开发原生app
+
+
+ react:
+          jsx语法
+          state
+          props
+         数据的通信
+使用：
+        第一步：
+            引包：reacr，reac-dom
+         第二部：
+              ReactDOM.render(
+                 <div>
+                     document.getElementById('root')
+                      () =>{
+                            挂载完成之后的代码
+                            }
+                    <div>
+                 )；
+
+
+jsx规则：
+1，把样式中的class类名改为：className
+2，标签一定要闭合：单标签《input/》<div></div>
+3,    {}
+      （1）放js代码，可以运行 *
+                    （2）默认帮你展开数组  *
+                        [1,2,3,4] -> 1 2 3 4
+                        [<Li />,<Li/>] 如果数组中的值为组件（列表）
+                        那么一定要给列表中的每项加key（唯一），为了优化
+                    （3）注释 {/(*x2)/}
+                    （4）可以申明函数，但是不能直接调用 *
+                    （5）value={a} 赋值某个元素的属性
+                    （6）设置style={{width:'200px'}}
+
+input为受控组件，当value值为动态是发生变化是会操作数据
+一旦产生变化就会要有时间（onchange）所以报错
+有两种方式解决：
+1，官方方式：给受控组件添加（onchange = {}）
+2.定义默认值的时候就使用defaultValue（非受控组件）
+                    <input 
+                        defaultValue="1"
+                    />
+定义控件的方式：
+ class  App extends React.component{}
+或者
+ import React,{Component} from 'react'; 引Component
+                class App extends Component { }
+
+写方法的时候，如果不对函数做处理，事件函数中的this默认指向undefined
+            解决方案:
+             箭头函数：bind.this
+ 操作数据不能直接使用this.state.xx = ooo
+
+           ***只能通过this.setState()去修改你的状态
+
+           this.setState(对象（就是你state的数据）, ()=>{当操作完数据之后的回调函数})
+
+
+
+

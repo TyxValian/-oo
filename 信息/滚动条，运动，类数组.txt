@@ -1,0 +1,28 @@
+ window.onscroll
+
+      类数组:
+        长得像数组，有下标，也有length，但是不是一个真正的数组，不能使用数组的方法.
+        
+        为了能让类数组使用数组的方法，所以要把类数组转成数组。
+        
+        比如:
+          arguments、elements
+          
+        Array.from(类数组);
+        
+        Array.prototype.slice.call(类数组)
+        
+        [].slice.call(类数组)
+
+
+        requestAnimationFrame采用系统时间间隔，保持最佳绘制效率，
+        不会因为间隔时间过短，造成过度绘制，增加开销；也不会因为间隔时间太长，
+        使用动画卡顿不流畅，让各种网页动画效果能够有一个统一的刷新机制，
+        从而节省系统资源，提高系统性能，改善视觉效果
+
+
+        requestAnimationFrame(运动函数)
+
+        返回值为 number（编号）
+
+        cancelAnimationFrame(编号)关闭动画帧

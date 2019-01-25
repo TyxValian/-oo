@@ -1,0 +1,74 @@
+面向对象的3大特征
+  抽象，封装，继承，多态
+继承：
+  子类拥有父类的属性和方法，自己也有自己的一套方法和属性
+
+类（call）继承：
+  调用父类通过call来改变this（把window改成子类）
+  达到继承属性的目的。
+拷贝继承
+
+原型继承（对象继承，寄生组合继承）
+  1.创建一个空的构造函数
+  2.把空的构造函数的原型等于父类的原型
+  3.把子类的原型等于空构造函数的实例对象
+
+面向对象的写法：
+   属性挂在类里，方法写在原型下
+
+面向对象的继承：
+   属性使用：类似继承
+   方法使用：原型继承
+
+
+
+
+  寄生式组合继承:
+            使用Object.create();
+
+        Object.create：内置Object类天生自带的方法
+            1.创建一个空对象
+            2.让新创建的空对象的__proto__指向第一个传递进来的对象
+
+        Object.assign()
+            将多个对象的可枚举属性拷贝到目标对象上，并且返回赋值后的目标对象。
+
+            // Object.assign({},{key:val})
+
+            Object.assign(Coder.prototype,Person.prototype)
+
+        Object.defineProperties(obj, props)
+            给对象定义属性，如果存在该属性，
+            则用新定义的属性更新已存在的属性，
+            如果不存在该属性，则添加该属性。
+        obj：被添加属性的对象
+        props：添加或更新的属性对象
+
+
+
+
+
+call继承
+            继承属性
+            调用父类，通过call改变this
+        拷贝
+            for in
+            去掉非父类原型自身的属性
+        原型
+            function Xhh(){}
+            Xhh.prototype = Parent.prototype
+            child.prototype = new Xhh;
+        寄生式组合继承
+            child.prototype = Object.create(Parent.prototype)
+        对象继承
+            obj2.__proto__ =  obj;
+        extends
+            class 子类的名字 extends 父类的名字 {
+                constructor(..arg){
+                    super(...arg);
+                    this.xx = xx;
+                }
+                fn(){
+
+                }
+            }

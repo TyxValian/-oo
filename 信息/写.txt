@@ -1,0 +1,53 @@
+1：时间版运动：匀速
+   b+t/d * c
+2:   延迟加载的原理：
+   1.先把数据埋在对应的元素中<li _ url = "../1.jpg">
+   2.滚轮的时候，看看每个元素getbuoundingClientRect().top
+       是否进入可视的底部，如果是就把img的src替换成之前的存好的数据
+3：什么是事件流：
+      从window起由上而下到达目标点，在由目标点由下而上到达window的整个流程就叫事件流。
+      在过程中：可分为3个阶段：
+            捕获-目标-冒泡
+
+4：什么是event对象？
+        当时间触发的时候，函数的第一个参数就默认为事件对象
+        事件对象记录了，用户触发事件了解一些细节信息
+
+5：事件委托
+       利用了事件的一个模型，给父级绑定事件函数，触发子孙级的事件，
+通过ev.target，可以通过捕捉到子孙级的行为。
+
+6:如何阻止浏览器和冒泡的默认行为
+   冒泡：
+       ev.cancelBubble = true;
+       ev.stopPropagation();
+  浏览器：
+       DOM0:return flase
+       DOM2: ev.preventDefault();
+
+7:使用过的事件：
+    onclick； onmouseover；onmouseout; nomousedowm;onmouseup;onmousemove;
+  onmouseleave;onmouseenter;onload;onfocus;onblur;onleydown;onkeyup;onresize;onchange;
+ oninput;onscoll;ondblclick;
+
+8.如何获取键盘值，包括特殊按键 。
+keycode:
+ev.shiftkey
+ev.altkey
+ev.ctrlkey
+
+
+
+
+
+
+
+
+
+
+       
+
+
+
+
+

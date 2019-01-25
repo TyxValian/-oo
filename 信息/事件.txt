@@ -1,0 +1,151 @@
+事件--------：用户在浏览器操作的时候，触发（复合某种条件）的一种交互行为（事物，事务）
+   事件流：
+      1.事件捕获
+      2.目标事件
+      3.事件冒泡
+  
+事件绑定->监听：addEventListener()   :  ele.addElentListener('不带on的事件名'，事件函数，布尔值（默认不捕获）)
+解除事件绑定：removeEventListener() :  ele.removeEventListener('不带on的事件名'，事件名（。。和绑定事件的函数同一个地址，布尔值）)
+
+事件（冒泡）：指的是从目标由下而上直到window的过程叫冒泡
+                             如果目标元素和祖先元素绑定同一个事件，那么在执行完目标元素的事件函数之后
+                            同样会调用祖先级的同一个事件中的函数。
+  注意：
+        在开发的过程中，如果2个元素是嵌套关系，就要小心，事件冒泡（2个事件尽量不要重名）
+
+        阻止冒泡:（在事件源上阻止冒泡，就能解决父级执行的问题）
+            ev.cancelBubble = true;
+
+            ev.cancelBubble不是标准属性，但是所有浏览器都能兼容
+
+            ev.stopPropagation()  这个是标准，但是低版本浏览器不兼容
+                             
+事件（捕获）：从window开始，自上而下直到目标点的过程叫捕获
+                            （捕获）--->是否捕获（true要捕获，false不捕获（冒泡））默认为false不捕获。
+
+事件（目标）：目标阶段-->不管是捕获还是冒泡，在目标阶段执行的顺序..按照绑定的先后顺序..来执行
+
+当一个事件触发的时候，一般会经历三个阶段：
+  1.捕获 2.目标 3.冒泡  ------>事件流
+
+事件对象：event.tagat
+    用户触发某个事件的时候，那么事件函数的第一个参数就为事件对象，
+    这个对象记录用户在操作浏览器或元素使得相关信息
+
+
+事件默认行为:
+            当用户触发某个事件的时候，某种行为不是我们主动写的而是浏览器默认做的就叫事件默认行为
+
+
+
+点击事件是由2个事件组合在一起的形成的新事件：
+ 按下：（onmousedown） 抬起（onmouseup）
+ 阻止默认行为:DOM0(  return false  )  
+                            DOM2(  ele.preventDefult()   );  
+
+           
+
+      addEventListener  事件绑定(监听) 
+、、、、、、、
+    box.addEventListener('click',fn);
+
+    function fn(){
+        alert(1);
+    }
+
+、、、、、、、
+    btn.addEventListener('click',function(){
+        box.removeEventListener('click',fn);
+    })
+
+
+            removeEventListener解除事件绑定
+
+            ele.addEventListener('不带on的事件名',事件函数,布尔值(默认不捕获));
+
+            ele.removeEventListener('不带on的事件名',事件名（***和绑定事件的函数为同一个地址）,布尔值);
+
+
+
+ 事件监听（事件源）
+            在事件对象中有一个属性叫target，能够捕获到事件触发时的源头是哪个元素
+            可以节省性能。
+            注意：
+            只有嵌套关系才能获得到准确的事件源
+
+
+
+
+ 事件默认行为:
+            当用户触发某个事件的时候，某种行为不是我们主动写的而是浏览器默认做的就叫事件默认行为。
+
+
+        点击事件是由2个事件组合在一起的形成的新事件
+
+            按下:
+                onmousedown
+
+            抬起:
+                onmouseup
+
+        DOM0阻止默认行为:
+            return false
+
+        DOM2阻止默认行为:
+            ev.preventDefault();
+
+
+
+
+      onclick
+        onmouseover
+        onmouseout
+        onscroll
+        oninput
+        onchange
+        ondblclick
+        onload
+            静态资源加载完成之后执行（window.onload）
+        onresize
+
+        一个页面，只有一个焦点元素会被激活，一开始，页面中有一个焦点
+        当按了tab键或者直接激活之后焦点会从页面（window,document）中移到焦点元素身上
+
+        onfocus():焦点事件
+        onblur():失去焦点事件
+
+
+
+        onmouseenter    移入
+        onmouseleave    移出
+        上面这2个事件，没有冒泡，也不穿透
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

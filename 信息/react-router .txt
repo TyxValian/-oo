@@ -1,0 +1,109 @@
+history路由（浏览器的历史记录）
+  添加历史记录：history.pushState(数据，‘浏览器都忽略的名字’，URL地址)
+                                  onpopstater：
+                                        当你触发了浏览器的前进或者后退都会触发这个事件
+                                         这个事件下有ev的当下状态state，他可以接收pushstate的数据
+ 
+
+history.length  查看历史记录的个数最高是50个（为什么是50个？）
+back()回退
+forword（）前进
+go()跳转
+
+
+
+BrowserRouter：（浏览器的路由）
+
+1.   import {BrowserRouter as Router} form 'react-router-dom';
+2.   引入：将Router放在reactDOM.render的跟下；
+            reactdom.render（《router》《App/》</Router>）
+3.   配置路由：
+      import {route} form 'react-router-dom'
+     <Route path="/home:" component={组件}/>
+
+（1）component={组件}也可以是一个函数（ 函数声明组件）
+
+            <Route path="/home" component={(props)=>{return <div>1234</div>}}/>
+
+            props:
+                在切换路由的时候记录的细节信息。
+
+                是函数的情况下，要传入路由细节。
+                
+                在组件中，可以通过this.props去查看、使用
+
+                match     params、url
+                location  hash、search、state
+                history   go()  push()  replace()
+
+
+            一般使用component的函数，都是使用函数声明组件。
+        注意:
+            component如果放函数，一定要放有名的函数组件，
+            不然（匿名函数）点击多次本路由，会多次挂载和卸载
+
+        
+        一般判断使用可选组件，使用render={(props)=>{}}
+
+（2）render可以返回jsx或者一个组件，更喜欢通过render去判断使用需求的组件。
+
+
+        （3）children跟一个函数，不管你匹不匹配path都执行组件.
+
+
+        Redirect (重定向)
+
+            <Redirect to="/dashboard"/>  等同于调用了replace(),替换了当前的url
+            
+            to后面可以跟字符串（路径即可），
+            还可以跟对象（to={{pathname:'/',search:'?a=1&b=2'}）
+            存放数据
+
+
+
+
+一个history的案例
+HTML{
+样式：
+   <button id="btn">按钮1</button>
+    <button id="btn2">按钮2</button>
+    <button id="btn3">按钮3</button>
+    <div id="box"></div>
+
+    <a href="javascript:;" id="back">后退</a> 
+    <a href="javascript:;" id="fw">前进</a> 
+}
+
+ let btns = document.getElementsByTagName('button');
+let arr = [
+        '太阳',
+        '月亮',
+        '星星'
+    ];
+
+
+for(let [i.ele] of Object.entries(btns)){
+
+ele.onclick = function(){
+
+   history.pushstate({data:arr[i]},'','url地址')
+   box.innerHtml = arr[i];
+}
+back.onclick = function(){
+ history.go(-1)
+}
+//点击后退
+    back.onclick = function(){
+        history.go(-1);
+    }
+    //点击前进
+    fw.onclick = function(){
+        history.go(1);
+    }
+
+    //当切换历史记录的时候，触发事件并且通过ev.state获取push时存放数据
+    window.onpopstate = (ev) => {
+        box.innerHTML = ev.state.data;
+    }
+
+} 
